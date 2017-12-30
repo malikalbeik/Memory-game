@@ -1,6 +1,21 @@
 /*
  * Create a list that holds all of your cards
  */
+var cards = Array.from(document.getElementsByClassName('card'));
+var shuffledCards = shuffle(cards);
+document.querySelector('.deck').innerHTML = "";
+
+for (var i = 0; i < cards.length; i++) {
+    document.querySelector('.deck').appendChild(shuffledCards[i]);
+}
+
+document.querySelector('.deck').addEventListener('click', function(event){
+  event.target.className += " show open";
+});
+
+
+
+
 
 
 /*
