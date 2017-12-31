@@ -3,20 +3,43 @@
  */
 var cards = Array.from(document.getElementsByClassName('card'));
 var shuffledCards = shuffle(cards);
+var openCards = [];
 document.querySelector('.deck').innerHTML = "";
 
 for (var i = 0; i < cards.length; i++) {
     document.querySelector('.deck').appendChild(shuffledCards[i]);
 }
 
+
+
 document.querySelector('.deck').addEventListener('click', function(event){
-  event.target.className += " show open";
+
+  if (event.target.firstElementChild.classList[1] !== undefined && event.target.classList.contains('open','show') === false){
+    openCards.push(event.target.firstElementChild.classList[1]);
+  }
+  event.target.classList.add('show', 'open');
+
+
+  var cardsWithOpenClass = [].slice.call(document.querySelectorAll('.open'));
+
+
+  if (openCards[0] === openCards[1]) {
+     cardsWithOpenClass.forEach(function(element) {
+      element.classList.add('match');
+     })
+  }else if (openCards[1]) {
+    cardsWithOpenClass.forEach(function(element) {
+      setTimeout(function () {
+        element.classList.remove('open', 'show');
+      }, 250);
+    });
+  }
+
+  console.log(openCards);
+  if(openCards.length === 2) {
+    openCards = [];
+  };
 });
-
-
-
-
-
 
 /*
  * Display the cards on the page
@@ -39,8 +62,6 @@ function shuffle(array) {
 
     return array;
 }
-
-
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
