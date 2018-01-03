@@ -1,0 +1,13 @@
+@media (max-width: 700px) {
+
+  .deck {
+    width: 350px;
+    min-height: 370px;
+    padding: 16px;
+  }
+
+  .deck .card {
+    height: 65px;
+    width: 65px;
+  }
+}

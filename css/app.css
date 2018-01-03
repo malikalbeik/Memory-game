@@ -164,13 +164,27 @@ h1 {
     cursor: pointer;
 }
 
+.players-rating {
+  display: flex;
+}
+.players-rating > ul {
+  margin-left: -5%;
+}
+
+.players-rating > ul > li{
+  list-style: none;
+  display:inline;
+  position:relative;
+  padding-left: 0;
+}
+
 /* Add Animation for the modals */
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0}
-    to {top:300px; opacity:1}
+    to {top:0px; opacity:1}
 }
 
 @keyframes animatetop {
     from {top:-300px; opacity:0}
-    to {top:300px; opacity:1}
+    to {top:0px; opacity:1}
 }

@@ -3,10 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>Matching Game</title>
-    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
 
@@ -28,7 +29,7 @@
           <div class="restart">
       		<i class="fa fa-repeat"></i>
       	  </div>
-          <p class="timer"></p>
+          <p class="timer">00:00:00</p>
         </section>
 
         <ul class="deck">
@@ -87,15 +88,25 @@
           <div class="win-modal-content modal-content">
             <span class="win-modal-close">&times;</span>
             <p>Congratulations you have won..</p>
-            <p class="players-rating"></p>
+            <div class="players-rating">
+              <p>Your rating is:</p>
+            </div>
             <p>You've completed the game in:<span class="timer-won"></span></p>
+            <p>play again</p>
+            <div class="restart">
+        		<i class="fa fa-repeat"></i>
+        	  </div>
           </div>
         </div>
 
         <div class="lost-modal modal">
           <div class="lost-modal-content modal-content">
-            <p>Game over please try again later..</p>
+            <p>Game over</p>
             <p>It took you:<span class="timer-lost"></span> to complete the game</p>
+            <p>play again</p>
+            <div class="restart">
+        		<i class="fa fa-repeat"></i>
+        	  </div>
           </div>
         </div>
 
