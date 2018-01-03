@@ -1,16 +1,16 @@
 
 
 var deck = document.querySelector('.deck');
-var currentlySelectedCards = [];
+var currentlySelectedCards = []; /* An array containing the currently played two cards */
 var shuffledCards = shuffle(Array.from(document.getElementsByClassName('card')));
-var h = m = s = ms = 0;
-var newTime = '';
 var numberOfTimesTheUserWasWrong = 0;
 
 
-var seconds = 0, minutes = 0, hours = 0, t;
 
-
+/**
+ * Setting the time and adding it to the .timer claased node.
+ */
+var seconds = 0, minutes = 0, hours = 0, startTimer;
 function add() {
     seconds++;
     if (seconds >= 60) {
@@ -21,17 +21,17 @@ function add() {
             hours++;
         }
     }
-
     document.querySelector('.timer').textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-
-    t = setTimeout(add, 1000);
+    startTimer = setTimeout(add, 1000);
 }
+startTimer = setTimeout(add, 1000);
 
-t = setTimeout(add, 1000);
+
 
 
 /**
- * removing all old elements inside the deck and replacing them with the new shuff cards.
+ * removing all old elements inside the deck and replacing them
+ * with the new shuffled-cards.
  */
 deck.innerHTML = "";
 for (var i = 0; i < shuffledCards.length; i++) {
@@ -40,10 +40,11 @@ for (var i = 0; i < shuffledCards.length; i++) {
 
 
 /**
- * event listener for when the cards are clicked.
+ * event listener for when the deck is clicked.
  */
 deck.addEventListener('click', function(event){
 
+  /* An if statment to check if the clicked element is a deck or a card. */
   if (event.target.firstElementChild.classList[1] !== undefined && event.target.classList.contains('open','show') === false){
     currentlySelectedCards.push(event.target.firstElementChild.classList[1]);
   }
@@ -52,8 +53,10 @@ deck.addEventListener('click', function(event){
 
   var cardsWithOpenClass = [].slice.call(document.querySelectorAll('.open')).filter(e => (e.className.indexOf('match') === -1));
 
-console.log(cardsWithOpenClass);
-
+  /*
+  * check if the two cards match each other or not,
+  * if so match them if not then close them.
+  */
   if (currentlySelectedCards[0] === currentlySelectedCards[1]) {
      cardsWithOpenClass.forEach(function(element) {
       element.classList.add('match');
@@ -67,14 +70,15 @@ console.log(cardsWithOpenClass);
     numberOfTimesTheUserWasWrong += 1;
   }
 
-  console.log(numberOfTimesTheUserWasWrong);
-  if(currentlySelectedCards.length === 2) {
-    currentlySelectedCards = [];
-  };
+  if(currentlySelectedCards.length === 2) currentlySelectedCards = [];
 
   document.querySelector('.moves').innerHTML = 9 - numberOfTimesTheUserWasWrong;
 
 
+  /**
+   * A switch statment to know the players star
+   *  rating and to know when the user loses.
+   */
   var stars = document.querySelector('.stars');
   switch (numberOfTimesTheUserWasWrong) {
     case 3:
@@ -115,6 +119,13 @@ console.log(cardsWithOpenClass);
 
 });
 
+document.querySelector('.restart').addEventListener('click', function(){
+  document.querySelectorAll('.card').forEach(function(element) {
+    element.classList.remove('match', 'open', 'show');
+    location.reload();
+  });
+
+});
 
 
 

@@ -164,7 +164,7 @@ h1 {
     cursor: pointer;
 }
 
-/* Add Animation */
+/* Add Animation for the modals */
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0}
     to {top:300px; opacity:1}
